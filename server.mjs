@@ -7,6 +7,10 @@ app.get("/", (req, res) => {
 	res.send("response from IP: " + req.ip);
 });
 
+app.get("/time", (req, res) => {
+	res.send("Current Time is:" + new Date().getTime());
+});
+
 app.listen(port, () => {
 	console.log(`Example app listening on port ${port}`);
 });
