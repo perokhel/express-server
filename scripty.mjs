@@ -25,6 +25,7 @@
 		// let arrayIndex = Math.floor(Math.random() * transMap.length);
 
 		let apiUrl = "http://localhost:3100/api";
+		let apiUrlCyclic = "https://gardenia.cyclic.app/api";
 		let postOptions = {
 			method: "POST", // *GET, POST, PUT, DELETE, etc.
 			cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -37,7 +38,7 @@
 			body: JSON.stringify(transMap), // body data type must match "Content-Type" header
 		};
 
-		sendData(apiUrl, postOptions);
+		sendData(apiUrlCyclic, postOptions);
 	}
 
 	async function sendData(apiUrl, postOptions) {

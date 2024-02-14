@@ -28,13 +28,25 @@ export function getDateObjectFromFormattedString(dateString) {
 	return new Date(Date.UTC(year, month, day, 11));
 }
 
-export function extractNumber(amountString) {
-	const trimmedStr = amountString.trim();
-	const sign = trimmedStr[0] === "-" ? -1 : 1; // Check for negative sign and assign factor
+export function extractNumber(str) {
+	// Remove currency symbol ($), spaces, and commas
+	// By removing any characters which are not a digit, a -ve sign or a decimal point
+	const sanitizedStr = str.replace(/[^\d\-\.]/g, "");
 
-	// Using a regular expression to match one or more digits, optionally followed by a decimal point and more digits
-	let number = parseFloat(trimmedStr.match(/\d+(?:\.\d+)?/)[0]);
-	number = sign * number; // apply sign
+	// Parse the string as a float
+	const number = parseFloat(sanitizedStr);
 
 	return number;
 }
+
+// Flawed function: would return number 1 if passed string ' $ 1,000 '
+// export function extractNumber(amountString) {
+// 	const trimmedStr = amountString.trim();
+// 	const sign = trimmedStr[0] === "-" ? -1 : 1; // Check for negative sign and assign factor
+
+// 	// Using a regular expression to match one or more digits, optionally followed by a decimal point and more digits
+// 	let number = parseFloat(trimmedStr.match(/\d+(?:\.\d+)?/)[0]);
+// 	number = sign * number; // apply sign
+
+// 	return number;
+// }
